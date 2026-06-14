@@ -1,0 +1,10 @@
+artifact_location: file:///Users/iaroslav/Desktop/mlkisser/mlruns/329336779773257903/models/m-71b11294f00c42b2ab1c68964eb99a8f/artifacts
+creation_timestamp: 1781445313487
+experiment_id: '329336779773257903'
+last_updated_timestamp: 1781445315821
+model_id: m-71b11294f00c42b2ab1c68964eb99a8f
+model_type: null
+name: model
+source_run_id: 31aacbe44d0b4c449b2d9f2b1859d221
+status: 2
+status_message: null

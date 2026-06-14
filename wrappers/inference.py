@@ -4,7 +4,7 @@ import torch
 
 class TorchInference:
 
-    def __init__(self, log=False, experiment_name=None, path:str=None):
+    def __init__(self, log:bool=False, experiment_name:str=None, path:str=None):
         
         self.log = log
 
@@ -26,6 +26,8 @@ class TorchInference:
 
         if self.loss is not None: 
             self.loss_prev = self.loss
+        if self.metric is not None:
+            self.metric_prev = self.metric
 
         self.loss = loss
         self.metric = metric
@@ -52,7 +54,7 @@ class TorchInference:
                 if diff >= 0:
                     print(f"Metric diff: +{diff}; +{diff_perc}%\n")
                 else:
-                    print(f"Metric diff: -{diff}; -{diff_perc}%\n")
+                    print(f"Metric diff: {diff}; {diff_perc}%\n")
 
         if self.log:
             self._log(comment, model)

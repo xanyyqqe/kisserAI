@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/iaroslav/Desktop/mlkisser/mlruns/329336779773257903/993a892f2c114cbf816e031b68e7b3e1/artifacts
+end_time: 1781445321355
+entry_point_name: ''
+experiment_id: '329336779773257903'
+lifecycle_stage: active
+run_id: 993a892f2c114cbf816e031b68e7b3e1
+run_name: luminous-asp-410
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781445319538
+status: 3
+tags: []
+user_id: iaroslav

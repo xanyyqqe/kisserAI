@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/iaroslav/Desktop/mlkisser/mlruns/329336779773257903/94051a112259486fba052478f9683d6d/artifacts
+end_time: 1781445317672
+entry_point_name: ''
+experiment_id: '329336779773257903'
+lifecycle_stage: active
+run_id: 94051a112259486fba052478f9683d6d
+run_name: placid-ox-482
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781445315826
+status: 3
+tags: []
+user_id: iaroslav

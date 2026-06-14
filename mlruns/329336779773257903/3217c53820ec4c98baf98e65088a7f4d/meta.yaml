@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/iaroslav/Desktop/mlkisser/mlruns/329336779773257903/3217c53820ec4c98baf98e65088a7f4d/artifacts
+end_time: 1781445327069
+entry_point_name: ''
+experiment_id: '329336779773257903'
+lifecycle_stage: active
+run_id: 3217c53820ec4c98baf98e65088a7f4d
+run_name: efficient-gnat-144
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1781445325222
+status: 3
+tags: []
+user_id: iaroslav

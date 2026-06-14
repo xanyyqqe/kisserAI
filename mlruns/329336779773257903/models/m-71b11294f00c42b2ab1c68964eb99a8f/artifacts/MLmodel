@@ -1,0 +1,23 @@
+artifact_path: file:///Users/iaroslav/Desktop/mlkisser/mlruns/329336779773257903/models/m-71b11294f00c42b2ab1c68964eb99a8f/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.9.6
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.8.0
+mlflow_version: 3.1.4
+model_id: m-71b11294f00c42b2ab1c68964eb99a8f
+model_size_bytes: 4273
+model_uuid: m-71b11294f00c42b2ab1c68964eb99a8f
+prompts: null
+run_id: 31aacbe44d0b4c449b2d9f2b1859d221
+utc_time_created: '2026-06-14 13:55:13.494582'
