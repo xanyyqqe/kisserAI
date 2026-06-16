@@ -1,22 +1,23 @@
-FROM python:3.11-alpine AS builder
+FROM python:3.11-slim AS builder
 
 WORKDIR /docker
-ARG REQ_FILE=requirements.txt
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
-COPY ${REQ_FILE} requirements.txt
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-FROM python:3.11-alpine
+FROM python:3.11-slim
 
 WORKDIR /docker
+
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
-COPY compatibility_check.py .
 
-RUN chmod +x compatibility_check.py
+COPY compatibility_check.py /docker/compatibility_check.py
+COPY requirements.txt /docker/requirements.txt
 
-ENTRYPOINT ["python"]
-CMD ["compatibility_check.py"]
+RUN chmod +x /docker/compatibility_check.py
+
+ENTRYPOINT ["python", "compatibility_check.py"]

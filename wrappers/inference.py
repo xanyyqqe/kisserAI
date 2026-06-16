@@ -2,6 +2,7 @@ from typing import Literal
 import mlflow
 import torch
 
+
 class TorchInference:
 
     def __init__(self, log:bool=False, experiment_name:str=None, path:str=None):

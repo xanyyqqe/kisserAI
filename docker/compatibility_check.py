@@ -49,9 +49,13 @@ class KissAIDependencyChecker:
         self.import_success = []
         self.import_fail = []
     
+
     def load_requirements(self):
         if not os.path.exists(self.requirements_file):
-            print(f"[KissAI] File not found")
+            print(f"[KissAI] File not found: {self.requirements_file}")
+            return False
+        if os.path.isdir(self.requirements_file):
+            print(f"[KissAI] Path is a directory, expected a requirements file: {self.requirements_file}")
             return False
         
         reqs = []
@@ -69,6 +73,7 @@ class KissAIDependencyChecker:
         print(f"[KissAI] {len(self.requirements)} dependencies are found")
         return True
     
+    
     def get_installed(self):
         result = subprocess.run(
             [sys.executable, '-m', 'pip', 'list', '--format=freeze'],
@@ -85,11 +90,13 @@ class KissAIDependencyChecker:
         print(f"[KissAI] {len(self.installed)} dependencies are installed")
         return True
     
+
     def get_import_name(self, package_name: str) -> str:
         if package_name.lower() in self.IMPORT_NAMES:
             return self.IMPORT_NAMES[package_name.lower()]
         return package_name.replace('-', '_')
     
+
     def _check_version(self, installed: str, required: str, operator: str) -> bool:
 
         if operator == '>=':
@@ -107,6 +114,7 @@ class KissAIDependencyChecker:
         else:
             return installed == required
     
+
     def check_requirements(self):
         for pkg, ver, op in self.requirements:
             if pkg not in self.installed:
@@ -122,6 +130,7 @@ class KissAIDependencyChecker:
             else:
                 print(f"[WARNING!] {pkg} - OK")
     
+
     def test_imports(self):
         print(f"\n")
         for pkg, _, _ in self.requirements:
@@ -139,6 +148,7 @@ class KissAIDependencyChecker:
                 print(f"{pkg} - ошибка импорта: {e}")
                 self.import_fail.append(pkg)
     
+
     def run(self):
         print(f"\n[KissAI] Dependencies compatibility check:{self.requirements_file}")
         print(f"Python: {sys.version}\n")
