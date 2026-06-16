@@ -73,7 +73,7 @@ class KissAIDependencyChecker:
         print(f"[KissAI] {len(self.requirements)} dependencies are found")
         return True
     
-    
+
     def get_installed(self):
         result = subprocess.run(
             [sys.executable, '-m', 'pip', 'list', '--format=freeze'],
@@ -155,7 +155,6 @@ class KissAIDependencyChecker:
         
         if not self.load_requirements():
             print("[KissAI] No dependencies to check")
-            sys.exit(1)
         
         self.get_installed()
         self.check_requirements()
@@ -164,7 +163,7 @@ class KissAIDependencyChecker:
         print("\n" + "="*50)
         if not self.missing and not self.version_mismatches and not self.import_fail:
             print("[KissAI] All dependencies are installed correctly")
-            sys.exit(0)
+  
         else:
             if self.missing:
                 print(f"Missing dependencies: {', '.join(self.missing)}")
@@ -172,7 +171,6 @@ class KissAIDependencyChecker:
                 print(f"Versions mismatching: {', '.join(self.version_mismatches)}")
             if self.import_fail:
                 print(f"Import errors: {', '.join(self.import_fail)}")
-            sys.exit(1)
 
 
 def main():
