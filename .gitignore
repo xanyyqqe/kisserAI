@@ -1,3 +1,4 @@
 mlflow
 .venv
 mlruns
+.pytest_cache

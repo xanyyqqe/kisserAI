@@ -34,3 +34,11 @@ def test_compatibility_check_bad_file(file:str = "requirements.txt"):
 
     checker = KissAIDependencyChecker("absent_file.txt")
     checker.run()
+
+
+def test_compatibility_with_docker(file:str = "requirements.txt"):
+    
+    from compatibility_check import KissAIDependencyChecker
+
+    checker = KissAIDependencyChecker("requirements.txt")
+    checker.run_in_docker()
