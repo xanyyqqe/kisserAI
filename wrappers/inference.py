@@ -2,7 +2,6 @@ from typing import Literal
 import mlflow
 import torch
 
-
 class TorchInference:
 
     def __init__(self, log:bool=False, experiment_name:str=None, path:str=None):
@@ -63,7 +62,7 @@ class TorchInference:
         self.epoch += 1
 
 
-    def _log(self, comment, model): 
+    def _log(self, model, comment : str = None): 
         
         with mlflow.start_run() as run:
 
