@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from pydantic import BaseModel
 from sklearn.base import BaseEstimator, is_classifier, is_regressor
-from typing import Callable, Any
+from typing import Callable, Any, Union, Optional
 import numpy as np
 import pandas as pd
 import time
@@ -9,10 +9,10 @@ import io
 import uvicorn
 
 class ModelAPI:
-    def __init__(self, model: BaseEstimator, metric: Callable, data_preprocessor: Callable):
+    def __init__(self, model: BaseEstimator, metric: Callable, data_preprocessor: Union[Callable, tuple, list]):
         self.model = model
         self.metric = metric
-        self.preprocessor = data_preprocessor
+        self.data_or_preprocessor = data_preprocessor
         self.cur_metric_score = None
         self.best_metric_score = None
         self.X_train = self.X_test = self.y_train = self.y_test = None
@@ -26,13 +26,18 @@ class ModelAPI:
         else:
             raise ValueError("[ModelAPI] : Tool not adapted for this model type")
 
-    def _preprocess(self, data: Any):
-        result = self.preprocessor(data)
+    def _preprocess(self, data: Optional[Any] = None):
+
+        if isinstance(self.data_or_preprocessor, (tuple, list)):
+            self.X_train, self.X_test, self.y_train, self.y_test = self.data_or_preprocessor
+            return
+        
+        result = self.data_or_preprocessor(data)
         if not isinstance(result, (list, tuple)) or len(result) != 4:
             raise ValueError("[ModelAPI] : Preprocessor must return [X_train, X_test, y_train, y_test]")
         self.X_train, self.X_test, self.y_train, self.y_test = result
 
-    def _fit(self, data: Any):
+    def _fit(self, data: Optional[Any] = None):
         self._preprocess(data)
         self.model.fit(self.X_train, self.y_train)
         self.attempts += 1

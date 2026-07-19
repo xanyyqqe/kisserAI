@@ -19,13 +19,6 @@ from wrappers.logger import MlflowLogger
 METRICS_CL = [log_loss, accuracy_score]
 METRICS_REG = [mean_absolute_error, mean_squared_error]
 
-### **Fixtures**
-@pytest.fixture
-def iris_data():
-    data, target = load_iris(return_X_y=True)
-    return train_test_split(data, target, test_size=0.25, random_state=42)
-
-
 ### **1. Default Wrapper Tests**
 class TestDefaultWrapper:
     def test_logistic_regression(self, iris_data):
